@@ -71,7 +71,7 @@ function reverse(str) {
 	console.log(reversed.join(''));
 }
 
-reverse('henry');
+// reverse('henry');
 
 function reverse2(str) {
 	//check input
@@ -88,4 +88,49 @@ function reverse2(str) {
 	console.log(backwards.join(''));
 }
 
-reverse2('spain');
+// reverse2('spain');
+
+//Merge Arrays
+
+function mergeSortedArrays(arr1, arr2) {
+	let merged = arr1.concat(arr2);
+	const length = merged.length;
+	let sorted = [];
+	for (let i = 0; i < length; i++) {
+		if ([i] >= i - 1) {
+			sorted.push(merged[i]);
+		}
+	}
+	console.log(sorted);
+}
+
+// mergeSortedArrays([0, 1, 4, 31]);
+// mergeSortedArrays([0, 1, 4, 31], [4, 6, 30]);
+
+const mergeSortedArrays2 = (arr1, arr2) => {
+	const mergedArray = [];
+	let array1Item = arr1[0];
+	let array2Item = arr2[0];
+	let i = 1;
+	let j = 1;
+
+	//Check Input
+	arr1.length === 0 && arr2;
+	arr2.length === 0 && arr1;
+	//
+	while (array1Item || array2Item) {
+		if (!array2Item || array1Item < array2Item) {
+			mergedArray.push(array1Item);
+			array1Item = arr1[i];
+			i++;
+		} else {
+			mergedArray.push(array2Item);
+			array2Item = arr2[j];
+			j++;
+		}
+	}
+
+	console.log(mergedArray);
+};
+
+mergeSortedArrays2([0, 1, 4, 31], [4, 6, 30]);
