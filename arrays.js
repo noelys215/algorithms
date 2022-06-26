@@ -58,4 +58,34 @@ newArray.push('bye');
 newArray.push('!');
 newArray.delete(1);
 
-console.log(newArray);
+//Reverse a string
+
+function reverse(str) {
+	let word = Array.from(str);
+	let reversed = [];
+
+	for (let i = 0; i < str.length; i++) {
+		lastIndex = word.pop();
+		reversed.push(lastIndex);
+	}
+	console.log(reversed.join(''));
+}
+
+reverse('henry');
+
+function reverse2(str) {
+	//check input
+	if (!str || str.length < 2 || typeof str !== 'string') {
+		return 'invalid input';
+	}
+	//
+	const backwards = [];
+	const totalItems = str.length - 1;
+
+	for (let i = totalItems; i >= 0; i--) {
+		backwards.push(str[i]);
+	}
+	console.log(backwards.join(''));
+}
+
+reverse2('spain');
