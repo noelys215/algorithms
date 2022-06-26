@@ -134,3 +134,61 @@ const mergeSortedArrays2 = (arr1, arr2) => {
 };
 
 mergeSortedArrays2([0, 1, 4, 31], [4, 6, 30]);
+
+const merge = function (nums1, m, nums2, n) {
+	let p1 = m - 1;
+	let p2 = n - 1;
+	let i = m + n - 1;
+
+	while (p2 >= 0) {
+		if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+			nums1[i--] = nums1[p1--];
+		} else {
+			nums1[i--] = nums2[p2--];
+		}
+	}
+};
+
+// Two Sum
+
+const twoSum = (nums, target) => {
+	let memory = {};
+
+	for (let i = 0; i < nums.length; i++) {
+		if (memory[nums[i]] === undefined) {
+			memory[target - nums[i]] = i;
+		} else {
+			return [memory[nums[i]], i];
+		}
+	}
+};
+
+const twoSums = (nums, target) => {
+	let storage = {};
+
+	for (let [index, num] of nums.entries()) {
+		if (storage[num] !== undefined) return [storage[num], index];
+		storage[target - num] = index;
+	}
+};
+
+const twoSumss = (nums, target) => {
+	let storage = {};
+
+	for (let i = 0; i < nums.length; i++) {
+		let d = target - nums[i];
+		if (storage[d] !== undefined) {
+			return [storage[d], i];
+		} else {
+			storage[nums[i]] === i;
+		}
+	}
+};
+
+// const twoSum = (nums, target) => {
+// 	for (let i = 0; i < nums.length; i++) {
+// 		for (let j = i + 1; j < nums.length; j++) {
+// 			if (nums[i] + nums[j] === target) return [i, j];
+// 		}
+// 	}
+// };
