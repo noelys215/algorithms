@@ -1,4 +1,4 @@
-class Node {
+/* class Node {
 	constructor(value) {
 		this.value = value;
 		this.next = null;
@@ -77,7 +77,7 @@ class Queue {
 	}
 }
 
-const myQueue = new Queue();
+const myQueue = new Queue(); */
 
 /* myQueue.enqueue('Hen');
 myQueue.enqueue('Jen');
@@ -88,3 +88,36 @@ myQueue.dequeue();
 myQueue.dequeue();
 myQueue.dequeue();
  */
+
+class MyQueue {
+	constructor() {
+		this.pushStack = [];
+		this.popStack = [];
+	}
+
+	push(val) {
+		this.pushStack.push(val);
+	}
+
+	pop() {
+		if (this.popStack.length === 0) {
+			while (this.pushStack.length) {
+				this.popStack.push(this.pushStack.pop());
+			}
+		}
+		return this.popStack.pop();
+	}
+
+	peek() {
+		if (!this.popStack.length) {
+			while (this.pushStack.length) {
+				this.popStack.push(this.pushStack.pop());
+			}
+		}
+		return this.popStack[this.popStack.length - 1];
+	}
+
+	empty() {
+		return !this.pushStack.length && !this.popStack.length;
+	}
+}
