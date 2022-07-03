@@ -1,135 +1,185 @@
 class Node {
 	constructor(val) {
-		this.value = val;
+		this.val = val;
 		this.next = null;
-		this.null = null;
 	}
 }
 
-class DoublyLinkedList {
-	constructor() {
-		this.head = null;
-		this.tail = null;
-		this.length = 0;
-	}
+const a = new Node('A');
+const b = new Node('B');
+const c = new Node('C');
+const d = new Node('D');
 
-	push(val) {
-		const newNode = new Node(val);
+a.next = b;
+b.next = c;
+c.next = d;
 
-		if (this.head === null) {
-			this.head = newNode;
-			this.tail = newNode;
-		} else {
-			this.tail.next = newNode;
-			newNode.prev = this.tail;
-			this.tail = newNode;
-		}
-		this.length++;
-		return this;
+// List Ex 1 - Basic
+/* 
+const printLinkedList = (head) => {
+	let current = head;
+	while (current !== null) {
+		console.log(current.val);
+		current = current.next;
 	}
+};
+*/
 
-	pop() {
-		if (!this.head) return undefined;
-		let poppedNode = this.tail;
-		if (this.length === 1) {
-			this.head = null;
-			this.tail = null;
-		} else {
-			this.tail = poppedNode.prev;
-			this.tail.next = null;
-			poppedNode.prev = null;
-		}
-		this.length--;
-		return poppedNode;
-	}
+/* const printLinkedList = (head) => {
+	if (head === null) return;
+	console.log(head.val);
+	printLinkedList(head.next);
+};
 
-	shift() {
-		if (this.length === 0) return undefined;
-		let oldHead = this.head;
-		if (this.length === 1) {
-			this.head = null;
-			this.tail = null;
-		} else {
-			this.head = oldHead.next;
-			this.head.prev = null;
-			oldHead.next = null;
-		}
-		this.length--;
-		return oldHead;
-	}
-	unshift(val) {
-		const newNode = new Node(val);
-		if (!this.head) {
-			this.head = newNode;
-			this.tail = newNode;
-		} else {
-			this.head.prev = newNode;
-			newNode.next = this.head;
-			this.head = newNode;
-		}
-		this.length++;
-		return this;
-	}
+printLinkedList(a); */
 
-	get(index) {
-		if (index < 0 || index >= this.length) return null;
-		if (index <= this.length / 2) {
-			let count = 0;
-			let current = this.head;
-			while (count !== index) {
-				current = current.next;
-				count++;
-			}
-		} else {
-			let count = this.length - 1;
-			let current = this.tail;
-			while (count !== index) {
-				current = current.prev;
-				count--;
-			}
-		}
-		return current;
+/* const linkedListValues = (head) => {
+	const values = [];
+	let current = head;
+	while (current !== null) {
+		values.push(current.val);
+		current = current.next;
 	}
-	set(i, val) {
-		let foundNode = this.get(i);
-		if (foundNode !== null) {
-			foundNode.val = val;
+	console.log(values);
+};
+
+linkedListValues(a); */
+
+/* const fillValues = (head, values) => {
+	if (head === null) return;
+	values.push(head.val);
+	fillValues(head.next, values);
+};
+
+const linkedListValues = (head) => {
+	const values = [];
+	fillValues(head, values);
+	console.log(values);
+};
+
+linkedListValues(a); */
+
+/* const sumList = (head) => {
+	let sum = 0;
+	let current = head;
+	while (current !== null) {
+		sum += current.val;
+		current = current.next;
+	}
+	console.log(sum);
+}; */
+
+/* const sumList = (head) => {
+	if (head === null) return 0;
+	return head.val + sumList(head.next);
+};
+
+sumList(a);
+ */
+
+/* const linkedListFind = (head, target) => {
+	let current = head;
+	while (current !== null) {
+		if (current.val === target) {
 			return true;
 		}
-		return false;
+		current = current.next;
 	}
+	return false;
+}; */
 
-	insert(i, v) {
-		if (i < 0 || i > this.length) return false;
-		if (i === 0) this.unshift(v);
-		if (i === this.length) return this.push(v);
-		let newNode = new Node(v);
-		let beforeNode = this.get(i - 1);
-		let afterNode = beforeNode.next;
-		beforeNode.next = newNode;
-		newNode.prev = beforeNode;
-		newNode.next = afterNode;
-		afterNode.prev = newNode;
-		this.length++;
-		return true;
+// function getNodeValue(head, index) {
+// 	if (head === null) return null;
+// 	if (index === 0) return head.val;
+// 	return getNodeValue(head.next, index - 1);
+// }
+
+// console.log(getNodeValue(a, 2));
+
+/* const reverseList = (head) => {
+	let prev = null;
+	let current = head;
+	while (current !== null) {
+		const next = current.next;
+		current.next = prev;
+		prev = current;
+		current = next;
 	}
+	return prev;
+};
+ */
 
-	remove(i) {
-		if (i < 0 || i >= this.length) return false;
-		if (i === 0) return this.shift();
-		if (i === this.length - 1) return this.pop();
-		let removedNode = this.get(i);
-		removedNode.prev.next = removedNode.next;
-		removedNode.next.prev = removedNode.prev;
-		removedNode.next = null;
-		removedNode.prev = null;
-		this.length--;
-		return removedNode;
+// const reverseList = (head, prev = null) => {
+// 	if (head === null) return prev;
+// 	const next = head.next;
+// 	head.next = prev;
+// 	return reverseList(next, head);
+// };
+
+// const zipperLists = (head1, head2) => {
+// 	let tail = head1;
+// 	let current1 = head1.next;
+// 	let current2 = head2;
+// 	let count = 0;
+
+// 	while ((current1 !== null) & (current2 !== null)) {
+// 		if (count % 2 === 0) {
+// 			tail.next = current2;
+// 			current2 = current2.next;
+// 		} else {
+// 			tail.next = current1;
+// 			current1 = current1.next;
+// 		}
+// 		tail = tail.next;
+// 		count += 1;
+// 	}
+// 	if (current1 !== null) tail.next = current1;
+// 	if (current2 !== null) tail.next = current2;
+
+// 	return head1, head2;
+// };
+
+// const mergeTwoLists = (head1, head2) => {
+// 	if (head1 === null && head2 === null) return null;
+// 	if (head1 === null) return head2;
+// 	if (head2 === null) return head1;
+
+// 	const next1 = head1.next;
+// 	const next2 = head2.next;
+// 	head1.next = head2;
+// 	head2.next = mergeTwoLists(next1, next2);
+// 	return head1;
+// };
+
+/* const mergeTwoLists = (list1, list2) => {
+	if (list1 == null) return list2;
+	if (list2 == null) return list1;
+
+	if (list1.val < list2.val) {
+		list1.next = mergeTwoLists(list1.next, list2);
+		return list1;
+	} else {
+		list2.next = mergeTwoLists(list1, list2.next);
+		return list2;
 	}
-}
+}; */
 
-const list = new DoublyLinkedList();
+const mergeTwoLists = (l1, l2) => {
+	const dummy = new ListNode(-Infinity);
+	let prev = dummy;
 
-list.push(100);
-list.push(200);
-console.log(list);
+	while (l1 && l2) {
+		if (l1.val <= l2.val) {
+			prev.next = l1;
+			prev = l1;
+			l1 = l1.next;
+		} else {
+			prev.next = l2;
+			prev = l2;
+			l2 = l2.next;
+		}
+	}
+	if (!l1) prev.next = l2;
+	if (!l2) prev.next = l1;
+	return dummy.next;
+};
