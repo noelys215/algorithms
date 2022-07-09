@@ -95,5 +95,31 @@ function merge(left, right) {
 	return result;
 }
 
-const answer = sortArray(numbers);
+// const answer = sortArray(numbers);
 // console.log(answer);
+
+// Sorting Interview
+
+//#1 - Sort 10 schools around your house by distance:
+/* Insertion Sort: Really fast on small sorts; easy to code, space complexity of O(1) */
+
+//#2 - eBay sorts listings by the current Bid amount:
+/* Radix or Counting Sort: Bid is usually a fixed length number  */
+
+//#3 - Sport scores on ESPN
+/* Quick Sort: Most efficient, merge sort uses more memory, Quick Sort would have better space complexity   */
+
+//#4 - Massive database (can't fit all into memory) needs to sort through past year's user data
+/* Merge Sort: We wont be sorting in memory because data is so big, Merge Sort has better performance */
+
+//#5 - Almost sorted Udemy review data needs to update and add 2 new reviews
+/* Insertion Sort: Most of prev data is already sorted; all im doing is adding two new reviews to data;insertion sort for pre-ordered lists works better than other types of sorting  */
+
+//#6 - Temperature Records for the past 50 years in Canada
+/* Radix/Counting Sort if temps have no decimals, otherwise Quick Sort for in memory sorting */
+
+//#7 - Large user name database needs to be sorted. Data is very random.
+/* Merge Sort: if we have enough memory or Quick Sort if space isn't a problem and i could pick a good pivot */
+
+//#8 - You want to teach sorting for the first time
+/* BubbleSort/Selection Sort */
