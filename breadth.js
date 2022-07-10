@@ -174,6 +174,66 @@ class BinarySearchTree {
 		}
 		return this.BFSRecursive(queue, list);
 	}
+
+	DFSInOrder() {
+		return traverseInOrder(this.root, []);
+	}
+
+	DFSPostOrder() {
+		return traversePostOrder(this.root, []);
+	}
+
+	DFSPreOrder() {
+		return traversePreOrder(this.root, []);
+	}
+}
+
+function traverseInOrder(node, list) {
+	// Does Node have a left child
+	if (node.left) {
+		// If so, traverse down using recursion
+		traverseInOrder(node.left, list);
+	}
+	// When you end up at bottommost node; push it to list
+	list.push(node.value);
+	// Does Node have a right child
+	if (node.right) {
+		// If so, traverse down using recursion
+		traverseInOrder(node.right, list);
+	}
+	return list;
+}
+
+function traversePreOrder(node, list) {
+	// Push node to beginning/Start with parent node first
+	list.push(node.value);
+	// Does Node have a left child
+	if (node.left) {
+		// If so, traverse down using recursion
+		traversePreOrder(node.left, list);
+	}
+	// Does Node have a right child
+	if (node.right) {
+		// If so, traverse down using recursion
+		traversePreOrder(node.right, list);
+	}
+	return list;
+}
+
+function traversePostOrder(node, list) {
+	// Does Node have a left child
+	if (node.left) {
+		// If so, traverse down using recursion
+		traversePostOrder(node.left, list);
+	}
+	// Does Node have a right child
+	if (node.right) {
+		// If so, traverse down using recursion
+		traversePostOrder(node.right, list);
+	}
+	// Push parent node to end
+	list.push(node.value);
+	return list;
 }
 
 const tree = new BinarySearchTree();
@@ -186,8 +246,9 @@ tree.insert(15);
 tree.insert(1);
 // tree.remove(170);
 JSON.stringify(traverse(tree.root));
-tree.BFS();
-tree.BFSRecursive([tree.root], []);
+/* tree.BFS();
+tree.BFSRecursive([tree.root], []); */
+tree.DFSInOrder();
 
 //     9
 //  4     20
@@ -199,3 +260,27 @@ function traverse(node) {
 	tree.right = node.right === null ? null : traverse(node.right);
 	return tree;
 }
+
+// LeetCode #98
+
+/* const isValidBST = function (root) {
+	function recursive(root, min, max) {
+		// Base Case, does root exist/ // We hit the end of the path
+		if (!root) return true;
+		// current node's val doesn't satisfy the BST rules
+		if (root.val >= max || root.val <= min) return false;
+		// Continue to scan left and right
+		return recursive(root.left, min, root.val) && recursive(root.right, root.val, max);
+	}
+	return recursive(root, -Infinity, Infinity);
+};
+
+function isValidBST(root, min = -Infinity, max = Infinity) {
+	if (!root) return true;
+	return (
+		!(root.val <= min || root.val >= max) &&
+		isValidBST(root.left, min, root.val) &&
+		isValidBST(root.right, root.val, max)
+	);
+}
+ */
