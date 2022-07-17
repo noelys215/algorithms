@@ -189,11 +189,20 @@ function treeSum(array) {
 		}
 	}
 	return result;
+
+	//* Case 1. sum > target
+	// *-Eliminate last element, right pointer moves left
+	//* Case 2. sum < target
+	// *-Eliminate first element, left pointer moves right
+	//* Case 3. sum = target
+	//* Done!
 }
 
-//* Case 1. sum > target
-// *-Eliminate last element, right pointer moves left
-//* Case 2. sum < target
-// *-Eliminate first element, left pointer moves right
-//* Case 3. sum = target
-//* Done!
+/* 581. Shortest Unsorted Continuous Subarray */
+
+//* Initialize leftPointer at start of array and rightPointer at end
+//* Walk the leftPointer forward until you get to an element thats less than its prev
+//* Walk rightPointer backwards until you get an element that is greater than its prev
+//* Find the min and max of this sub array
+//* Extend the subarray from the beginning to include any num greater than the min of subarray
+//* Extend the subarray from the end to include any number less than the max of the subarray
