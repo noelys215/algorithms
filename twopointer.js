@@ -469,7 +469,7 @@ function trap(height) {
 			sum += wallHeight - height[i];
 		}
 	}
-	// reset wall height
+	// reset wall heights
 	// repeat above loop in opposite direction until you reach the highest index
 	wallHeight = 0;
 	for (let i = height.length - 1; i >= heightIndex; i--) {
